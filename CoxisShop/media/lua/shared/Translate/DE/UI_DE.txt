@@ -1,0 +1,14 @@
+UI_DE = {
+	UI_ISCoxisShop_WindowTitle = "Coxis Shop",
+    UI_CoxisShop_Px_Money = "Spieler %1 Geld : %2",
+	UI_CoxisShop_Weapons = "Waffen",
+	UI_CoxisShop_RepairWeapon = "Reparatur",
+	UI_CoxisShop_Various = "Verschiedenes",
+	UI_CoxisShop_Player = "Fertigkeiten",
+	UI_CoxisShop_ItemButton = "%1 - %2",
+	UI_CoxisShop_ItemButton2 = "%1 x%2 - %3",
+	UI_CoxisShop_Carpentry = "Tischlern",
+	UI_CoxisShop_Health = "Gesundheit",
+	UI_CoxisShop_Skills = "Fertigkeiten",
+	UI_CoxisShop_PermanentBonus = "Erweiterungen",
+}
