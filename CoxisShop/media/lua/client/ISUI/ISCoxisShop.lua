@@ -4,7 +4,7 @@
 #	@author: 	Dr_Cox1911					                                                            #
 #	@notes:		Many thanks to RJ´s LastStand code and all the other modders out there					#
 #	@notes:		For usage instructions check forum link below                                  			#
-#	@link: 													       										#
+#	@link: 		https://theindiestone.com/forums/index.php?/topic/20228-coxis-shop/											       										#
 #########################################################################################################
 --]]
 
@@ -26,19 +26,25 @@ function ISCoxisShop:createChildren()
 	self:addChild(self.panel);
 	
 	-- Tab with weapon stuff
-	self.weaponScreen = ISCoxisShopWeaponUpWindow:new(0, 8, 400, 400, self.playerId);
+	self.weaponScreen = ISCoxisShopPanel:new(0, 8, 400, 400, self.playerId, self.settings["WEAPONS"]);
 	self.weaponScreen:initialise();
 	self.panel:addView(getText('UI_CoxisShop_Weapons'), self.weaponScreen);
 	-------------------------
 	
 	-- Tab with repair stuff
-	self.repairScreen = ISCoxisShopWeaponRepairWindow:new(0, 8, 400, 400, self.playerId);
+	self.repairScreen = ISCoxisShopPanel:new(0, 8, 400, 400, self.playerId, self.settings["REPAIR"]);
 	self.repairScreen:initialise();
 	self.panel:addView(getText('UI_CoxisShop_RepairWeapon'), self.repairScreen);
 	-------------------------
 	
+	-- Tab with food stuff
+	self.foodScreen = ISCoxisShopPanel:new(0, 8, 400, 400, self.playerId, self.settings["FOOD"]);
+	self.foodScreen:initialise();
+	self.panel:addView(getText('UI_CoxisShop_Food'), self.foodScreen);
+	-------------------------
+	
 	-- Tab with various stuff
-	self.itemScreen = ISCoxisShopVariousItemWindow:new(0, 8, 400, 400, self.playerId);
+	self.itemScreen = ISCoxisShopPanel:new(0, 8, 400, 400, self.playerId, self.settings["VARIOUS"]);
 	self.itemScreen:initialise();
 	self.panel:addView(getText('UI_CoxisShop_Various'), self.itemScreen);
 	-------------------------
@@ -60,10 +66,11 @@ function ISCoxisShop:render()
 end
 
 function ISCoxisShop:reloadButtons()
-	self.playerScreen:reloadButtons();
 	self.weaponScreen:reloadButtons();
-	self.itemScreen:reloadButtons();
 	self.repairScreen:reloadButtons();
+	self.foodScreen:reloadButtons();
+	self.itemScreen:reloadButtons();
+	self.playerScreen:reloadButtons();
 end
 
 function ISCoxisShop:onGainJoypadFocus(joypadData)
@@ -101,7 +108,7 @@ function ISCoxisShop:onJoypadDown(button, joypadData)
 	end
 end
 
-function ISCoxisShop:new (x, y, width, height, player)
+function ISCoxisShop:new (x, y, width, height, player, settings)
 	local o = {};
 	o = ISCollapsableWindow:new(x, y, width, height);
 	setmetatable(o, self);
@@ -110,5 +117,6 @@ function ISCoxisShop:new (x, y, width, height, player)
 	o:setTitle(getText("UI_ISCoxisShop_WindowTitle"))
 	o.playerId = player;
 	ISCoxisShop.instance[player] = o;
+	o.settings = settings;
 	return o;
 end
