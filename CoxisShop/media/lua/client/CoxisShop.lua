@@ -89,7 +89,7 @@ end
 -- handling key presses here
 -- **************************************************************************************
 CoxisShop.onKeyPressed = function(_key)
-		if _key == Keyboard.KEY_O then
+		if _key == getCore():getKey("OpenCoxisShop") then
 			if getSpecificPlayer(0) and not getSpecificPlayer(0):isDead() then
 				showUpgradeScreen(0)
 			end
