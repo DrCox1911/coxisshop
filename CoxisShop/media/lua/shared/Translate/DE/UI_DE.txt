@@ -1,6 +1,6 @@
 UI_DE = {
 	UI_ISCoxisShop_WindowTitle = "Coxis Shop",
-    	UI_CoxisShop_Px_Money = "Spieler %1 Geld : %2",
+	UI_CoxisShop_Px_Money = "Spieler %1 Geld : %2",
 	UI_CoxisShop_Weapons = "Waffen",
 	UI_CoxisShop_RepairWeapon = "Reparatur",
 	UI_CoxisShop_Food = "Nahrung/Trinken",
@@ -15,4 +15,6 @@ UI_DE = {
 	UI_CoxisShop_BuyButton = "Kaufen",
 	UI_CoxisShop_AvailItems = "Verfügbare Gegenstände",
 	UI_CoxisShop_AvailSkills = "Verfügbare Fertigkeiten",
+	UI_optionscreen_binding_CoxisShop = "Coxis Shop",
+	UI_optionscreen_binding_OpenCoxisShop = "Shop öffnen"
 }
