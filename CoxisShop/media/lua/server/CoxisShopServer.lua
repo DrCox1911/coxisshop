@@ -12,39 +12,31 @@ require 'CoxisUtil'
 
 CoxisShopServer = {};
 CoxisShopServer.settings = {};
-
+CoxisShopServer.luanet = nil;
+CoxisShopServer.module = nil;
+CoxisShopServer.network = false;
+self_net = nil;
 -- **************************************************************************************
 -- sending the info that zombie is dead to client
 -- zombies are server-sided since a couple of builds, so the event isn´t fired on the client any longer
 -- **************************************************************************************
-CoxisShopServer.AfterZombieDead = function()
-	CoxisShopServer.SendToClient("afterZombieDead", {})
+CoxisShopServer.AfterZombieDead = function(_player)
+	--CoxisShopServer.SendToClient("afterZombieDead", {_this})
 end
 
 
-CoxisShopServer.SendSettings = function()
-	CoxisShopServer.SendToClient("sendSettings", CoxisShopServer.settings)
-end
-
-
--- **************************************************************************************
--- basic function to send something to the client
--- the _data has to be a table, _event a unique name that is also recognized by the client
--- **************************************************************************************
-CoxisShopServer.SendToClient = function(_event, _data)
-	print("...CoxisShop...SENDING DATA TO CLIENT")
-	sendServerCommand('CoxisShop', _event, _data);
-	print("...CoxisShop...SENDING DATA TO CLIENT DONE")
-end
-
-
-CoxisShopServer.ReceiveFromClient = function(_module, _command, _player, _args)
-	if _module ~= 'CoxisShop' then return end
-	print("...CoxisShop...received from client!")
-	if _command == 'askSettings' then
-		print("New Client knocked, sending the settings...");
-		CoxisShopServer.SendSettings();
-		print("Settings sended");
+CoxisShopServer.transmitSettings = function(_player, _username)
+		if CoxisShopServer.network then
+			local players 		= getOnlinePlayers();
+			local array_size 	= players:size();	
+			for i=0, array_size-1, 1 do
+				local player = players:get(i);
+				print(tostring(player:getUsername()));
+				if _username == player:getUsername() then
+					print(tostring(instanceof(player, "IsoPlayer" )));
+					CoxisShopServer.module.sendPlayer(player, "settings", CoxisShopServer.settings);
+				end
+			end
 	end
 end
 
@@ -61,16 +53,30 @@ end
 -- **************************************************************************************
 -- init the server, registering events and whatnot
 -- **************************************************************************************
-CoxisShopServer.InitServer = function()
+CoxisShopServer.initServer = function()
 	if (isServer()) then
 		print("...CoxisShop...INIT SERVER")
 		CoxisShopServer.LoadSettings();
-		Events.OnZombieDead.Add(CoxisShopServer.AfterZombieDead);
-		Events.OnClientCommand.Add(CoxisShopServer.ReceiveFromClient);
+		CoxisShopServer.network = true;
+		CoxisShopServer.luanet = LuaNet:getInstance();
+		CoxisShopServer.module = CoxisShopServer.luanet.getModule("CoxisShop", true);
+		LuaNet:getInstance().setDebug( true );
+	
+		CoxisShopServer.module.addCommandHandler("settings", CoxisShopServer.transmitSettings);
+		CoxisShopServer.module.addCommandHandler("zeddead", CoxisShopServer.AfterZombieDead);
+		--Events.OnZombieDead.Add(CoxisShopServer.AfterZombieDead);
+		
+		CoxisShopServer.network = true;
+		--Events.OnClientCommand.Add(CoxisShopServer.ReceiveFromClient);
 		print("...CoxisShop...INIT SERVER DONE")
 	end
 
 end
 
-Events.OnServerStarted.Add(CoxisShopServer.InitServer)
---Events.OnGameStart.Add(CoxisShopServer.InitServer)
+CoxisShopServer.initMP = function()
+	if isServer() then
+		LuaNet:getInstance().onInitAdd(CoxisShopServer.initServer);
+	end
+end
+
+Events.OnGameBoot.Add(CoxisShopServer.initMP)

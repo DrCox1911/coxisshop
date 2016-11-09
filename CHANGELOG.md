@@ -10,6 +10,12 @@
 
 # Changelog
 
+### Version 1.3.0
+	- bugfix: integrated LuaNet to get rid of the "all players earn money in MP"-bug
+	- dialog informing the player that the settings aren´t loaded yet
+	- bugfix: new character after player died in MP is fixed now (proper reinit)
+	- definable shop key in the game options (thanks to blindcoder)
+	- player starts now with 0 money instead of 100
 
 ### Version 1.2.0
 	- definable settings within the "CoxisShopSettings.ini"
