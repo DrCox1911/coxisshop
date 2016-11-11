@@ -94,7 +94,7 @@ end
 -- handling key presses here
 -- **************************************************************************************
 CoxisShop.onKeyPressed = function(_key)
-		if _key == getCore():getKey("OpenCoxisShop") then then
+		if _key == getCore():getKey("OpenCoxisShop") then
 			if getSpecificPlayer(0) and not getSpecificPlayer(0):isDead() then
 				local next = next;
 				if not (CoxisShop.settings["BASIC"] == nil) then
