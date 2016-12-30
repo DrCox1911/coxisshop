@@ -15,4 +15,7 @@ UI_DE = {
 	UI_CoxisShop_BuyButton = "Kaufen",
 	UI_CoxisShop_AvailItems = "Verfügbare Gegenstände",
 	UI_CoxisShop_AvailSkills = "Verfügbare Fertigkeiten",
+	UI_CoxisShop_NoSettings = "Der Shop-Inhalt wurde nicht geladen, versuche erneut den Inhalt zu lesen. Anschließend erneut den Shop öffnen.",
+	UI_optionscreen_binding_CoxisShop = "Coxis Shop",
+	UI_optionscreen_binding_OpenCoxisShop = "Shop öffnen"
 }
