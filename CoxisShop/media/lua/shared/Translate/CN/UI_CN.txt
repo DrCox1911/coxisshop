@@ -15,7 +15,4 @@ UI_CN = {
 	UI_CoxisShop_BuyButton = "购买",
 	UI_CoxisShop_AvailItems = "物品列表",
 	UI_CoxisShop_AvailSkills = "技能列表",
-	UI_optionscreen_binding_CoxisShop = "购买菜单",
-	UI_optionscreen_binding_OpenCoxisShop = "打开购买菜单",
-	UI_CoxisShop_NoSettings = "正在接收服务器配置文件，请点击OK继续。",
 }

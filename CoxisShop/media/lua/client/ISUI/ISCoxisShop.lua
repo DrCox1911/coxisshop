@@ -50,7 +50,8 @@ function ISCoxisShop:createChildren()
 	-------------------------
 	
 	-- Tab with skills
-	self.playerScreen = ISCoxisShopPlayerUpWindow:new(0, 8, 400, 400, self.playerId);
+	--self.playerScreen = ISCoxisShopPlayerUpWindow:new(0, 8, 400, 400, self.playerId);
+	self.playerScreen = ISCoxisShopPanelSkills:new(0, 8, 400, 400, self.playerId, self.settings["SKILLS"]);
 	self.playerScreen:initialise();
 	self.panel:addView(getText('UI_CoxisShop_Player'), self.playerScreen);
 	-------------------------

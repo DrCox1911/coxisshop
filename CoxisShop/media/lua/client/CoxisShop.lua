@@ -32,6 +32,7 @@ CoxisShop.InitPlayer = function()
 		local playerObj = getSpecificPlayer(i)
 			if playerObj then
 				CoxisShop.modData[i] = playerObj:getModData();
+				--if CoxisShop.debug then CoxisShop.modData[i].playerMoney = CoxisShop.modData[i].playerMoney or 1000; end
 				CoxisShop.modData[i].playerMoney = CoxisShop.modData[i].playerMoney or 0;
 				CoxisShop.modData[i].CoxisShopXp = CoxisShop.modData[i].CoxisShopX or 1;
 				CoxisShop.modData[i].CoxisShopBoostGoldLevel = CoxisShop.modData[i].CoxisShopBoostGoldLevel or 1;
@@ -52,7 +53,7 @@ local function showUpgradeScreen(_playerNum)
 		local x = getPlayerScreenLeft(_playerNum)
 		local y = getPlayerScreenTop(_playerNum)
 		
-		CoxisShop.upgradeScreen[_playerNum] = ISCoxisShop:new(x+70,y+50,420,408,_playerNum, CoxisShop.settings)
+		CoxisShop.upgradeScreen[_playerNum] = ISCoxisShop:new(x+70,y+50,620,408,_playerNum, CoxisShop.settings)	--420
 		--CoxisShop.upgradeScreen[_playerNum] = ISCoxisShopUpgradeTab:new(x+70,y+50,320,608,_playerNum)
 		CoxisShop.upgradeScreen[_playerNum]:initialise()
 		CoxisShop.upgradeScreen[_playerNum]:addToUIManager()
