@@ -10,6 +10,10 @@
 
 # Changelog
 
+### Version 1.4.1
+	- removed debug prints from ISCoxisShopPanelSkills
+	- skillcosts are now rounded to whole numbers
+
 ### Version 1.4.0
 	- skills are now definable in ini
 	- skill "goldbonus" removed for now

@@ -70,9 +70,9 @@ function ISCoxisShopPanelSkills:create()
 			end
 			if perkName ~= nil and perkType ~= nil then
 				local lvlacquire = self.char:getPerkLevel(Perks.FromString(perkString))+1;
-				print("lvl from char: " .. tostring(self.char:getPerkLevel(Perks.FromString(perkString))));
-				print("lvlacquire: " .. tostring(lvlacquire));
-				self.CoxisShopList:addItem(perkName .. " - Lvl. " .. tostring(lvlacquire) .. " (" .. tostring(value*(lvlacquire/1.2)) .. ")", tostring(perkType) .. "|" .. tostring(value*(lvlacquire/1.2)));
+				--print("lvl from char: " .. tostring(self.char:getPerkLevel(Perks.FromString(perkString))));
+				--print("lvlacquire: " .. tostring(lvlacquire));
+				self.CoxisShopList:addItem(perkName .. " - Lvl. " .. tostring(lvlacquire) .. " (" .. tostring(luautils.round(value*(lvlacquire/1.2),0)) .. ")", tostring(perkType) .. "|" .. tostring(luautils.round(value*(lvlacquire/1.2),0)));
 			end
 	end
 	self.CoxisShopBuyButton = self:createButton(290, y-15, self.onBuyMouseDown, self.char, self.playerId);
@@ -119,10 +119,10 @@ function ISCoxisShopPanelSkills:onBuyMouseDown(button, x, y)
 	-- manage the item
 	if button.internal == "buy" then
 		local selectedPerk = self.CoxisShopList.items[self.CoxisShopList.selected].item
-		print("selected: " .. tostring(selectedPerk));
+		--print("selected: " .. tostring(selectedPerk));
 		if selectedPerk ~= nil then
 			local splitstring = luautils.split(selectedPerk, "|")
-			print("cost: " .. tostring(splitstring[2]));
+			--print("cost: " .. tostring(splitstring[2]));
 			self.char:getModData().playerMoney = self.char:getModData().playerMoney - tonumber(splitstring[2]);
 			self.char:LevelPerk(Perks.FromString(splitstring[1]));
 			luautils.updatePerksXp(Perks.FromString(splitstring[1]), self.char);
@@ -160,7 +160,7 @@ function ISCoxisShopPanelSkills:reloadButtons()
 			end
 			if perkName ~= nil and perkType ~= nil then
 				local lvlacquire = self.char:getPerkLevel(Perks.FromString(perkString))+1;
-				self.CoxisShopList:addItem(perkName .. " - " .. tostring(perkType) .. " - Lvl. " .. tostring(lvlacquire) .. " (" .. tostring(value*(lvlacquire/1.2)) .. ")", tostring(perkType) .. "|" .. tostring(value*(lvlacquire/1.2)));
+				self.CoxisShopList:addItem(perkName .. " - Lvl. " .. tostring(lvlacquire) .. " (" .. tostring(luautils.round(value*(lvlacquire/1.2),0)) .. ")", tostring(perkType) .. "|" .. tostring(luautils.round(value*(lvlacquire/1.2),0)));
 			end
 		end
 	else
