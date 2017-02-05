@@ -1,0 +1,21 @@
+UI_DE = {
+	UI_ISCoxisShop_WindowTitle = "Coxis Shop",
+    UI_CoxisShop_Px_Money = "Player %1 Money : %2",
+	UI_CoxisShop_Weapons = "Weapons",
+	UI_CoxisShop_RepairWeapon = "Repair",
+	UI_CoxisShop_Food = "Food/Drinks",
+	UI_CoxisShop_Various = "Various",
+	UI_CoxisShop_Player = "Skills",
+	UI_CoxisShop_ItemButton = "%1 - %2",
+	UI_CoxisShop_ItemButton2 = "%1 x%2 - %3",
+	UI_CoxisShop_Carpentry = "Carpentry",
+	UI_CoxisShop_Health = "Health",
+	UI_CoxisShop_Skills = "Skills",
+	UI_CoxisShop_PermanentBonus = "Upgrades",
+	UI_CoxisShop_BuyButton = "Buy",
+	UI_CoxisShop_AvailItems = "Available Items",
+	UI_CoxisShop_AvailSkills = "Available Skills",
+	UI_CoxisShop_NoSettings = "The contents available in the shop aren´t loaded, will try to load them now. Please try to open the shop again after clicking ok.",
+	UI_optionscreen_binding_CoxisShop = "Coxis Shop",
+	UI_optionscreen_binding_OpenCoxisShop = "Open shop"
+}

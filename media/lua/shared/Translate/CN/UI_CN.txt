@@ -1,0 +1,22 @@
+
+UI_CN = {
+	UI_ISCoxisShop_WindowTitle = "购买菜单",
+	UI_CoxisShop_Px_Money = "玩家 %1 金钱：%2",
+	UI_CoxisShop_Weapons = "武器",
+	UI_CoxisShop_RepairWeapon = "维修",
+	UI_CoxisShop_Food = "食物/饮料",
+	UI_CoxisShop_Various = "杂项",
+	UI_CoxisShop_Player = "技能",
+	UI_CoxisShop_ItemButton = "%1 - %2",
+	UI_CoxisShop_ItemButton2 = "%1 x%2 - %3",
+	UI_CoxisShop_Carpentry = "木工",
+	UI_CoxisShop_Health = "药物",
+	UI_CoxisShop_Skills = "技能",
+	UI_CoxisShop_PermanentBonus = "升级",
+	UI_CoxisShop_BuyButton = "购买",
+	UI_CoxisShop_AvailItems = "物品列表",
+	UI_CoxisShop_AvailSkills = "技能列表",
+	UI_optionscreen_binding_OpenCoxisShop = "打开购买菜单"
+	UI_optionscreen_binding_CoxisShop = "购买菜单",
+	UI_CoxisShop_NoSettings = "配置文件正在载入中，请按下确认按钮继续。",
+}
