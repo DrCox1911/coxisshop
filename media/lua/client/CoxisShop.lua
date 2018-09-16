@@ -52,7 +52,7 @@ local function showUpgradeScreen(_playerNum)
 	if not CoxisShop.upgradeScreen[_playerNum] then
 		local x = getPlayerScreenLeft(_playerNum)
 		local y = getPlayerScreenTop(_playerNum)
-		
+
 		CoxisShop.upgradeScreen[_playerNum] = ISCoxisShop:new(x+70,y+50,620,408,_playerNum, CoxisShop.settings)	--420
 		--CoxisShop.upgradeScreen[_playerNum] = ISCoxisShopUpgradeTab:new(x+70,y+50,320,608,_playerNum)
 		CoxisShop.upgradeScreen[_playerNum]:initialise()
@@ -99,6 +99,7 @@ CoxisShop.onKeyPressed = function(_key)
 			if getSpecificPlayer(0) and not getSpecificPlayer(0):isDead() then
 				local next = next;
 				if not (CoxisShop.settings["BASIC"] == nil) then
+					CoxisShop.WriteSettings();
 					showUpgradeScreen(0)
 				else
 					luautils.okModal(getText('UI_CoxisShop_NoSettings'), true, 100, 100, 0, 0)
@@ -146,6 +147,11 @@ CoxisShop.LoadSettings = function()
 	CoxisShop.settings = CoxisUtil.readINI("CoxisShop", "CoxisShopSettings.ini");
 end
 
+CoxisShop.WriteSettings = function()
+	CoxisUtil.writeINI("CoxisShop", "test.ini", true, false, CoxisShop.settings);
+	CoxisUtil.readINI("CoxisShop", "test.ini");
+end
+
 CoxisShop.receiveSettings = function(_player, _settings)
 	print("...CoxisShop... receiving settings from server");
 	if CoxisShop.network then
@@ -169,7 +175,7 @@ CoxisShop.init = function()
 		CoxisShop.luanet.setDebug(CoxisShop.debug);
 		CoxisShop.module.addCommandHandler("settings", CoxisShop.receiveSettings);
 		CoxisShop.module.addCommandHandler("zeddead", CoxisShop.AfterZombieDead);
-		
+
 		CoxisShop.InitPlayer();
 		CoxisShop.gamemode = "MP";
 		Events.OnKeyPressed.Add(CoxisShop.onKeyPressed);
@@ -177,7 +183,7 @@ CoxisShop.init = function()
 		CoxisShop.network = true;
 		print("...CoxisShop...INIT CLIENT DONE")
 	end
-	
+
 	if (not(isClient()) and not(isServer())) then
 		print("...CoxisShop...INIT SP")
 		CoxisShop.InitPlayer();
@@ -194,7 +200,7 @@ CoxisShop.initMP = function()
 		LuaNet:getInstance().onInitAdd(CoxisShop.init);
 		LuaNet:getInstance().onInitAdd(CoxisShop.askSettings);
 	end
-	
+
 
 end
 
@@ -202,7 +208,7 @@ end
 CoxisShop.initSP = function()
 	if (not(isClient()) and not(isServer())) then
 		CoxisShop.init();
-	end	
+	end
 end
 Events.OnConnected.Add(CoxisShop.initMP)
 Events.OnGameStart.Add(CoxisShop.initSP)

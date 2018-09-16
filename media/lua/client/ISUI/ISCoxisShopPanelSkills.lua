@@ -49,7 +49,7 @@ function ISCoxisShopPanelSkills:create()
 
 	local rect = ISRect:new(16, y + 20, 390, 1, 0.6, 0.6, 0.6, 0.6);
 	self:addChild(rect);
-	
+
 	self.CoxisShopList = ISCoxisShopList:new(16, y + 30, 390, 200, self.char, self.playerId, self);
     self.CoxisShopList:initialise()
     self.CoxisShopList:instantiate()
@@ -58,7 +58,7 @@ function ISCoxisShopPanelSkills:create()
     self.CoxisShopList.font = UIFont.NewSmall
     self.CoxisShopList.drawBorder = true
     self:addChild(self.CoxisShopList)
-	
+
 	for perkString,value in pairs(self.items) do
 		local perkName = nil;
 		local perkType = nil;
@@ -148,9 +148,9 @@ function ISCoxisShopPanelSkills:reloadButtons()
 		else
 			self.buttons[1]:setEnable(true);
 		end
-		
+
 		self.CoxisShopList:clear();
-		
+
 		for perkString,value in pairs(self.items) do
 			local perkName = nil;
 			local perkType = nil;
@@ -275,6 +275,7 @@ function ISCoxisShopList:new(x, y, width, height, player, playerId, parent)
     o.count = 0;
 	o.itemheightoverride = {}
 	o.items = {}
+	o.columns = {}
 	o.char = player;
 	o.playerId = playerId;
 	o.parent = parent;

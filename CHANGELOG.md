@@ -10,6 +10,9 @@
 
 # Changelog
 
+### Version 1.4.3
+	- fixed error-spam due to columns-table in ISScrollingListBox
+
 ### Version 1.4.2
 	- skills above 10 aren´t listed anymore
 

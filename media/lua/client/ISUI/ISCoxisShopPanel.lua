@@ -39,7 +39,7 @@ function ISCoxisShopPanel:render()
 	self:drawText(self.char:getDescriptor():getForename().." "..self.char:getDescriptor():getSurname(), 20, y, 1,1,1,1, UIFont.Medium);
 	y = y + 25;
 	self:drawText(getText('UI_CoxisShop_Px_Money', self.playerId, self.char:getModData().playerMoney), 20, y, 1,1,1,1, UIFont.Small);
-	
+
 end
 
 function ISCoxisShopPanel:create()
@@ -50,16 +50,18 @@ function ISCoxisShopPanel:create()
 
 	local rect = ISRect:new(16, y + 20, 390, 1, 0.6, 0.6, 0.6, 0.6);
 	self:addChild(rect);
-	
+
 	self.CoxisShopList = ISCoxisShopList:new(16, y + 30, 390, 200, self.char, self.playerId, self);
+	--self.CoxisShopList:addColumn("Items", 0);
     self.CoxisShopList:initialise()
     self.CoxisShopList:instantiate()
     self.CoxisShopList.itemheight = 22
+		self.CoxisShopList.columns = {};
 	self.CoxisShopList.onmousedown = CoxisShopUI.checkPrice;
     self.CoxisShopList.font = UIFont.NewSmall
     self.CoxisShopList.drawBorder = true
     self:addChild(self.CoxisShopList)
-	
+
 	for itemType,value in pairs(self.items) do
 		local item = ScriptManager.instance:getItem(itemType)
 		self.CoxisShopList:addItem(item:getDisplayName() .. " (" .. tostring(value) .. ")", tostring(itemType) .. "|" .. tostring(value));
@@ -108,7 +110,7 @@ function ISCoxisShopPanel:onBuyMouseDown(button, x, y)
 	-- manage the item
 	if button.internal == "buy" then
 		local selectedItem = self.CoxisShopList.items[self.CoxisShopList.selected].item
-		
+
 		if selectedItem ~= nil then
 			local splitstring = luautils.split(selectedItem, "|")
 			self.char:getModData().playerMoney = self.char:getModData().playerMoney - tonumber(splitstring[2]);
@@ -224,6 +226,7 @@ function ISCoxisShopList:new(x, y, width, height, player, playerId, parent)
 	o.backgroundColor = {r=0, g=0, b=0, a=0.8};
 	o.borderColor = {r=0.4, g=0.4, b=0.4, a=0.9};
 	o.altBgColor = {r=0.2, g=0.3, b=0.2, a=0.1}
+	o.listHeaderColor = {r=0.4, g=0.4, b=0.4, a=0.3};
 	-- Since these were broken before, don't draw them by default
 	o.altBgColor = nil
 	o.drawBorder = false
@@ -239,8 +242,9 @@ function ISCoxisShopList:new(x, y, width, height, player, playerId, parent)
 	o.itemheight = o.fontHgt + o.itemPadY * 2;
 	o.selected = 1;
     o.count = 0;
-	o.itemheightoverride = {}
-	o.items = {}
+	o.itemheightoverride = {};
+	o.items = {};
+	o.columns = {};
 	o.char = player;
 	o.playerId = playerId;
 	o.parent = parent;
