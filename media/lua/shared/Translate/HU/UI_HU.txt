@@ -1,0 +1,21 @@
+UI_HU = {
+	UI_ISCoxisShop_WindowTitle = "Kisbolt",
+    UI_CoxisShop_Px_Money = "Név: %1 Pénz : %2",
+	UI_CoxisShop_Weapons = "Fegyverek",
+	UI_CoxisShop_RepairWeapon = "Javítás",
+	UI_CoxisShop_Food = "Étel/Ital",
+	UI_CoxisShop_Various = "Vegyes",
+	UI_CoxisShop_Player = "Képességek",
+	UI_CoxisShop_ItemButton = "%1 - %2",
+	UI_CoxisShop_ItemButton2 = "%1 x%2 - %3",
+	UI_CoxisShop_Carpentry = "Ácsmesterség",
+	UI_CoxisShop_Health = "Egészség",
+	UI_CoxisShop_Skills = "Képességek",
+	UI_CoxisShop_PermanentBonus = "Fejlesztések",
+	UI_CoxisShop_BuyButton = "Vásárlás",
+	UI_CoxisShop_AvailItems = "Elérhetõ Tárgyak",
+	UI_CoxisShop_AvailSkills = "Elérhetõ Képességek",
+	UI_CoxisShop_NoSettings = "A bolt tartalma nincs betöltve. Kattints az OK gombra majd próbáld újra.",
+	UI_optionscreen_binding_CoxisShop = "Kisbolt",
+	UI_optionscreen_binding_OpenCoxisShop = "Vásárlás"
+}

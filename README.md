@@ -17,3 +17,20 @@ The "random"-key in "[BASIC]" is used as followed:
 				if (randi >= tonumber(CoxisShop.settings["BASIC"]["random"])) then
         
 As the above formula describes: higher numbers make the earning of money less likely. If you set "random" to zero you will always earn money.
+
+You can create shop zones to limit where people can shop. They can overlap. The first line covers probably most maps, enabling worldwide access.
+####Always leave an empty line after your last line. Do not delete all lines.
+GUIDE: 
+- Bottom Left corner (x1, y1)
+- Top Right corner (x2, y2)
+
+        name=x1 x2 y1 x2
+
+Default example:
+
+        [ZONE]
+        buyZone=-999999 999999 -999999 999999
+        buyZone2=10885 10885 10145 10145
+
+
+				

@@ -165,6 +165,38 @@ CoxisShop.prepareReInit = function()
 end
 
 -- **************************************************************************************
+-- Check if player is inside a shop zone.
+-- **************************************************************************************
+CoxisShop.shopZoneCheck = function()
+
+	posX = math.floor(getSpecificPlayer(0):getX());
+	posY = math.floor(getSpecificPlayer(0):getY());
+
+	zones = CoxisShop.settings["ZONE"];
+
+	zoneAllList = {}
+	for itemType,value in pairs(zones) do
+		table.insert(zoneAllList, value)
+	end
+
+	shopOpen = false
+
+	for _, aZone in ipairs(zoneAllList) do
+		zoneNameParts = {}
+		for substring in aZone:gmatch("%S+") do
+		   table.insert(zoneNameParts, substring)
+		end
+
+		if ((posX >= tonumber(zoneNameParts[1]) and posX <= tonumber(zoneNameParts[2])) and (posY >= tonumber(zoneNameParts[3]) and posY <= tonumber(zoneNameParts[4]))) then
+			shopOpen = true
+			break
+		end
+	end
+
+   return shopOpen;
+end
+
+-- **************************************************************************************
 -- init the client, registering events and whatnot
 -- **************************************************************************************
 CoxisShop.init = function()
